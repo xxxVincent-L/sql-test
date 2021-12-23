@@ -27,7 +27,7 @@ This repository is aimed to improve my sql level : )
 
 ## **Test 3**:
 * Description:
-  >Check the **student number and student name and average scores** of students with average scores greater than or equal to 60
+  >Check the **student id and student name and average scores** of students with average scores greater than or equal to 60
 
 
 
