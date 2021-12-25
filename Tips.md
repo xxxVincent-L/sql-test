@@ -50,3 +50,12 @@
   It is like 'xxx%yyy'.
       : )
 ---
+
+## Day3:
+
+* **（）**:
+  Remember if you accomplish a query, put a () around it!
+
+* **'01'**:
+  If you wanna query some attributes with specific values, you can put them into a new **table** with alias.
+---
