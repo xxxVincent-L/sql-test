@@ -59,3 +59,15 @@
 * **'01'**:
   If you wanna query some attributes with specific values, you can put them into a new **table** with alias.
 ---
+## Day4:
+
+* **in**:
+  You need to figure out the scope of **IN** 's usage
+  > The same as Day 2, So do it!
+
+* **Title of Quetions**:
+  >查询没有学全所有课程的同学的信息
+
+  You should just focus on the suitable tables the title related to.
+
+---
