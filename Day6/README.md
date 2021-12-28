@@ -1,72 +1,83 @@
 
-# Day 5 : )
+# Day 6 : )
 
-## **Test 13**:
+## **Test 16**:
 
 - Description:
 
-  > 查询和"01"号的同学学习的课程完全相同的其他同学的信息
+  > 检索"01"课程分数小于60，按分数降序排列的学生信息
 
 - Solution:
   ```sql
 
+  SELECT * FROM student
+  WHERE s_id in
+  (
+  SELECT s_id FROM score
+  WHERE c_id = '01'
+  AND s_score < 60
+  ORDER BY s_score DESC
+  )
+
+  # Online version
+  -- select a.*,b.c_id,b.s_score from
+  -- 	student a,score b
+  -- 	where a.s_id = b.s_id and b.c_id='01' and b.s_score<60 ORDER BY b.s_score DESC;
+
+  # PS: I think that the discription of this problem is aimed to only output the student infomation.
+
+  # My method is using 'in' while online method is using 'a.s_id = b.s_id'
   ```
 
 
 
-## **Test 14**:
+## **Test 17**:
 
 - Description:
 
-  > 查询没学过"张三"老师讲授的任一门课程的学生姓名
-
-- Solution:
-  ```sql
-
-  # My version
-  SELECT s_name from student
-  WHERE s_id not in
-  (SELECT s_id from score
-  WHERE c_id in
-  (SELECT c_id FROM course
-  WHERE t_id in
-  (SELECT t_id FROM teacher
-  WHERE t_name = '张三')
-  )
-  )
-
-  # Another version
-  -- select a.s_name from student a where a.s_id not in (
-  -- 	select s_id from score where c_id =
-  -- 				(select c_id from course where t_id =(
-  -- 					select t_id from teacher where t_name = '张三')));
-  ```
-
-## **Test 15**:
-
-- Description:
-
-  > 查询两门及其以上不及格课程的同学的学号，姓名及其平均成绩
+  > 按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
 
 - Solution:
   ```sql
   # My version
-  SELECT student.s_id,student.s_name,t.a_score FROM student NATURAL JOIN
-  (SELECT s_id , ROUND(AVG(s_score), 1) as a_score,count(*) as num from score
-  WHERE s_score < 60
-  GROUP BY s_id HAVING num >= 2) as t
+  SELECT
+  (select s_score from score where s_id=a.s_id and c_id='01') as Class1,
+  (select s_score from score where s_id=a.s_id and c_id='02') as Class2,
+  (select s_score from score where s_id=a.s_id and c_id='03') as Class3,
+  AVG(s_score) as a_score
+  FROM score as a
+  GROUP BY s_id
+  ORDER BY s_score desc
 
-  # 先想能不能调整select的个数
-  -- SELECT s_id ,count(*) as num from score
-  -- WHERE s_score < 60
-  -- -- GROUP BY s_id HAVING num >= 2
-
+  # Online version
+  -- select a.s_id,(select s_score from score where s_id=a.s_id and c_id='01') as 语文,
+  -- 				(select s_score from score where s_id=a.s_id and c_id='02') as 数学,
+  -- 				(select s_score from score where s_id=a.s_id and c_id='03') as 英语,
+  -- 			round(avg(s_score),2) as 平均分 from score a  GROUP BY a.s_id ORDER BY 平均分 DESC;
   # Another version
-  -- select a.s_id,a.s_name,ROUND(AVG(b.s_score)) from
-  -- 	student a
-  -- 	left join score b on a.s_id = b.s_id
-  -- 	where a.s_id in(
-  -- 			select s_id from score where s_score<60 GROUP BY  s_id having count(1)>=2)
-  -- 	GROUP BY a.s_id,a.s_name
+  -- @喝完这杯还有一箱的写法
+  -- SELECT a.s_id,MAX(CASE a.c_id WHEN '01' THEN a.s_score END ) 语文,
+  -- MAX(CASE a.c_id WHEN '02' THEN a.s_score END ) 数学,
+  -- MAX(CASE a.c_id WHEN '03' THEN a.s_score END ) 英语,
+  -- avg(a.s_score),b.s_name FROM Score a JOIN Student b ON a.s_id=b.s_id GROUP BY a.s_id ORDER BY 5 DESC
 
   ```
+
+## **Test 18**:
+
+- Description:
+
+  > -- 查询各科成绩最高分、最低分和平均分：以如下形式显示：课程ID，课程name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率(及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90)
+
+- Solution:
+  ```sql
+
+  select a.c_id,b.c_name,MAX(s_score),MIN(s_score),ROUND(AVG(s_score),2),
+      (ROUND(100*(SUM(case when a.s_score>=60 then 1 else 0 end)/SUM(case when a.s_score then 1 else 0 end)),2) as 及格率,
+    ROUND(100*(SUM(case when a.s_score>=70 and a.s_score<=80 then 1 else 0 end)/SUM(case when a.s_score then 1 else 0 end)),2) as 中等率,
+    ROUND(100*(SUM(case when a.s_score>=80 and a.s_score<=90 then 1 else 0 end)/SUM(case when a.s_score then 1 else 0 end)),2) as 优良率,
+    ROUND(100*(SUM(case when a.s_score>=90 then 1 else 0 end)/SUM(case when a.s_score then 1 else 0 end)),2) as 优秀率
+    from score a left join course b on a.c_id = b.c_id GROUP BY a.c_id,b.c_name
+  --
+  ```
+  > 这个我偷懒了...

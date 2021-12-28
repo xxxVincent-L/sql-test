@@ -85,3 +85,34 @@
 
 
 ---
+
+## Day6:
+
+* **specific one**:
+
+  You can directly select the attributes that satisfy.
+  * Example:
+  `(select s_score from score where s_id=a.s_id and c_id='01') as Class1,`
+
+
+    > But I have a question here that why the table suits perfectly with 'null'.
+
+    >Wanna check more details, please direct go to the link below
+
+  [Test17](https://github.com/xxxVincent-L/sql-test/blob/master/Day6/test17.sql)
+
+
+* **Case**:
+
+  * format:
+  (Case ... When ... then ... else ...)
+
+  * Example:
+  `SUM(case when a.s_score>=70 and a.s_score<=80 then 1 else 0 end)`
+
+  >Wanna check more details, please direct go to the link below
+
+  [Test18](https://github.com/xxxVincent-L/sql-test/blob/master/Day6/test18.sql)
+
+
+---
