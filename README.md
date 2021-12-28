@@ -18,5 +18,9 @@ This repository is aimed to improve my sql level : )
 
 [Day5](https://github.com/xxxVincent-L/sql-test/blob/master/Day5/)
 
+[Day6](https://github.com/xxxVincent-L/sql-test/blob/master/Day6/)
+
+> Btw, Happy birthday to myself!  : )
+
 ## Tips：
 [Pratical Tips](https://github.com/xxxVincent-L/sql-test/blob/master/Tips.md)

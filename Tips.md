@@ -71,3 +71,17 @@
   You should just focus on the suitable tables the title related to.
 
 ---
+
+## Day5:
+
+* **'Exact the same'**:
+
+  You can consider from two aspect like number and 'Not in'.
+
+
+  >Wanna check more details, please direct go to the link below
+
+  [Test13](https://github.com/xxxVincent-L/sql-test/blob/master/Day5/test13.sql)
+
+
+---
