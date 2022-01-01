@@ -116,3 +116,21 @@
 
 
 ---
+
+## Day7:
+
+
+* **rank**:
+
+  I still don't figure out the rank-related things.
+
+  You can directly go to the following links.
+
+  [Test19](https://github.com/xxxVincent-L/sql-test/blob/master/Day7/test19.sql)
+
+  [Test20](https://github.com/xxxVincent-L/sql-test/blob/master/Day7/test20.sql)
+
+
+
+
+---

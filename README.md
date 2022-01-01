@@ -22,5 +22,8 @@ This repository is aimed to improve my sql level : )
 
 > Btw, Happy birthday to myself!  : )
 
+[Day7](https://github.com/xxxVincent-L/sql-test/blob/master/Day7/)
+
+
 ## Tips：
 [Pratical Tips](https://github.com/xxxVincent-L/sql-test/blob/master/Tips.md)
